@@ -1,4 +1,4 @@
-package com.saeyan.controller;
+package com.saeyan.vo;
 
 public class MemberVO {
 	private String name;
