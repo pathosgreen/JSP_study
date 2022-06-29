@@ -14,32 +14,36 @@ import com.saeyan.dao.MemberDAO;
 import com.saeyan.vo.MemberVO;
 
 /**
- * Servlet implementation class JoinServlet
+ * Servlet implementation class MemberUpdateServlet
  */
-@WebServlet(name = "join.do", urlPatterns = { "/join.do" })
-public class JoinServlet extends HttpServlet {
+@WebServlet(name = "memberUpdate.do", urlPatterns = { "/memberUpdate.do" })
+public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("member/join.jsp");
+		String userid = request.getParameter("userid");
+		MemberDAO mDao = MemberDAO.getInstance();
+		
+		MemberVO mVo = mDao.getMember(userid);
+		request.setAttribute("mVo", mVo);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("member/memberUpdate.jsp");
 		dispatcher.forward(request, response);
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
-		String name = request.getParameter("name");
+		// 폼에서 입력한 회원 정보 얻어오기
 		String userid = request.getParameter("userid");
 		String pwd = request.getParameter("pwd");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String admin = request.getParameter("admin");
-		
+		// 회원 정보를 저장할 객체 생성
 		MemberVO mVo=new MemberVO();
-		mVo.setName(name);
 		mVo.setUserid(userid);
 		mVo.setPwd(pwd);
 		mVo.setEmail(email);
@@ -47,19 +51,8 @@ public class JoinServlet extends HttpServlet {
 		mVo.setAdmin(Integer.parseInt(admin));
 		
 		MemberDAO mDao=MemberDAO.getInstance();
-		int result=mDao.insertMember(mVo);
-		
-		HttpSession session=request.getSession();
-		
-		if(result==1) {
-			session.setAttribute("userid", mVo.getUserid());
-			request.setAttribute("message", "회원 가입에 성공했습니다.");
-		}else {
-			request.setAttribute("message", "회원 가입에 실패했습니다.");
-		}
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("member/login.jsp");
-		dispatcher.forward(request, response);
+		mDao.updateMember(mVo);
+		response.sendRedirect("login.do");
 	}
 
 }
