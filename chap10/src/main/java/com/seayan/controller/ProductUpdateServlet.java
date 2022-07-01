@@ -16,19 +16,28 @@ import com.saeyan.dao.ProductDAO;
 import com.seayan.dto.ProductVO;
 
 /**
- * Servlet implementation class ProductWriteServlet
+ * Servlet implementation class ProductUpdateServlet
  */
-@WebServlet(name = "productWrite.do", urlPatterns = { "/productWrite.do" })
-public class ProductWriteServlet extends HttpServlet {
+@WebServlet(name = "productUpdate.do", urlPatterns = { "/productUpdate.do" })
+public class ProductUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("product/productWrite.jsp");
+		String code = request.getParameter("code");
+		
+		ProductDAO pDao = ProductDAO.getInstance();
+		ProductVO pVo = pDao.selectProductByCode(code);
+		
+		request.setAttribute("product", pVo);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("product/productUpdate.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("utf-8");
 		
 		ServletContext context = getServletContext();
 		String path = context.getRealPath("upload");
@@ -37,18 +46,23 @@ public class ProductWriteServlet extends HttpServlet {
 		
 		MultipartRequest multi = new MultipartRequest(request, path,sizeLimit,encType,new DefaultFileRenamePolicy());
 		
+		String code = multi.getParameter("code");
 		String name = multi.getParameter("name");
 		int price = Integer.parseInt(multi.getParameter("price"));
 		String description = multi.getParameter("description");
-		String pictureURL = multi.getFilesystemName("pictureUrl");
+		String pictureUrl = multi.getFilesystemName("pictureUrl");
+		if(pictureUrl == null) {
+			pictureUrl = multi.getParameter("nomakeImg");
+		}
 		ProductVO pVo = new ProductVO();
+		pVo.setCode(Integer.parseInt(code));
 		pVo.setName(name);
 		pVo.setPrice(price);
-		pVo.setPictureUrl(pictureURL);
+		pVo.setPictureUrl(pictureUrl);
 		pVo.setDescription(description);
 		
 		ProductDAO pDao = ProductDAO.getInstance();
-		pDao.insertProduct(pVo);
+		pDao.updateProduct(pVo);
 		
 		response.sendRedirect("productList.do");
 	}

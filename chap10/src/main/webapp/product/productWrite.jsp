@@ -23,15 +23,17 @@
 		</tr>
 		<tr>
 			<th> 사진 </th>
-			<td><input type="file" name="pictureUrl"></td>
+			<td><input type="file" name="pictureUrl"><br>
+				(주의사항 : 이미지를 변경하고자 할 때만 선택하시오)
+			</td>
 		</tr>
 		<tr>
 			<th> 설명 </th>
-			<td><textarea cols="80" rows="10" name="discription"></textarea></td>
+			<td><textarea cols="80" rows="10" name="description"></textarea></td>
 		</tr>
 	</table>
 	<br>
-	<input type="submit" value="등록" onclick="return produckCheck()">
+	<input type="submit" value="등록" onclick="return productCheck()">
 	<input type="reset" value="다시 작성">
 	<input type="button" value="목록" onclick="location.href='productList.do'">
 </form>

@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>상품 관리</title>
-<link rel="stylesheet" type="text/css" href="css/shopping.css">
+<link rel="stylesheet" type="text/css" href="../css/shopping.css">
 </head>
 <body>
 <div id="wrap" align="center">
@@ -14,7 +14,7 @@
 <table class="list">
 	<tr>
 		<td colspan="5" style="border: white; text-align: right">
-			<a href="./productWrite.do">상품 등록</a>
+			<a href="../productWrite.do">상품 등록</a>
 		</td>
 	</tr>
 	
@@ -26,7 +26,7 @@
 		<td>${product.name}</td>
 		<td>${product.price}</td>
 		<td>
-			<a href="productUpdete.do?code=${product.code}">상품 수정</a>
+			<a href="productUpdate.do?code=${product.code}">상품 수정</a>
 		</td>
 		<td>
 			<a href="productDelete.do?code=${product.code}">상품 삭제</a>
