@@ -1,4 +1,4 @@
-document.write("자바스크립트 실행 테스트");
+// document.write("자바스크립트 실행 테스트");
 
 function productCheck(){
 	if(document.frm.name.value.length == 0){

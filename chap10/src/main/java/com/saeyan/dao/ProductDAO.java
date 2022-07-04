@@ -119,6 +119,7 @@ public class ProductDAO {
 			DBManager.close(conn, pstmt);
 		}
 	}
+	// c r u Delete
 	public void deleteProduct(String code) {
 		String sql = "delete product where code=?";
 		Connection conn = null;

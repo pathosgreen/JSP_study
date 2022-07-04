@@ -29,9 +29,4 @@ public class ProductListServlet extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("product/productList.jsp");
 		dispatcher.forward(request, response);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-
 }
