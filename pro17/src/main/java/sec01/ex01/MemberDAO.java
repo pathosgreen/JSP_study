@@ -28,8 +28,8 @@ public class MemberDAO {
 		}
 	}
 	
-	public List listMembers() {
-		List membersList = new ArrayList();
+	public List<MemberVO> listMembers() {
+		List<MemberVO> membersList = new ArrayList();
 		try {
 			conn = dataFactory.getConnection();
 			String query = "select * from t_member order by joinDate desc";
@@ -112,7 +112,7 @@ public class MemberDAO {
 			pstmt.setString(2, name);
 			pstmt.setString(3, email);
 			pstmt.setString(4, id);
-			pstmt.execute();
+			pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
 		} catch (Exception e) {

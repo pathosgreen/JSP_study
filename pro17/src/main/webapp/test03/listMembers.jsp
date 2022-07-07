@@ -4,6 +4,7 @@
     isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
@@ -53,30 +54,34 @@
 		<td width="7%"><b>이름</b></td>
 		<td width="7%"><b>이메일</b></td>
 		<td width="7%"><b>가입일</b></td>
+		<td width="7%"><b>수정</b></td>
+		<td width="7%"><b>삭제</b></td>
 	</tr>
 	
 	<c:choose>
-		<c:when test="${ memberlist==null }">
+		<c:when test="${ membersList==null }">
 			<tr>
 				<td colspan="5">
 					<b>등록된 회원이 없습니다.</b>
 				</td>
 			</tr>
 		</c:when>
-		<c:when test="${ memberlist!=null }">
-			<c:forEach var="mem" items="${memberlist }">
+		<c:when test="${ membersList!=null }">
+			<c:forEach var="mem" items="${membersList}">
 				<tr align="center">
 				<td>${mem.id }</td>
 				<td>${mem.pwd }</td>
 				<td>${mem.name }</td>
 				<td>${mem.email }</td>
 				<td>${mem.joinDate }</td>
+				<td><a href="${contextPath}/member/modMemberForm.do?id=${mem.id}">수정</a></td>
+				<td><a href="${contextPath}/member/delMember.do?id=${mem.id}">삭제</a></td>
 			</tr>
 			</c:forEach>
 		</c:when>
 	</c:choose>
 </table>
-<a href="#">
+<a href="${contextPath}/member/memberForm.do">
 	<p class="cls2">회원 가입하기</p>
 </a>
 </body>
