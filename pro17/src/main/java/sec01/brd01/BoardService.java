@@ -3,10 +3,20 @@ package sec01.brd01;
 import java.util.List;
 
 public class BoardService {
-
+	
+	BoardDAO boardDAO;
+	
+	public BoardService() {
+		 boardDAO = new BoardDAO();
+	}
+	
 	public List<ArticleVO> listArticles() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ArticleVO> articlesList = boardDAO.selectAllArticles();
+		return articlesList;
+	}
+
+	public void addArticle(ArticleVO article) {
+		boardDAO.insertNewArticle(article);
 	}
 
 }
