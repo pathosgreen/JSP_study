@@ -13,7 +13,7 @@
 </head>
 <body>
 <form method="post" action="${contextPath}/member/addMember.do">
-<h1 style="text-align: center;">회원 가입창</h1>
+<h1 style="text-align: center">회원 가입창</h1>
 <table align="center">
 	<tr>
 		<td width="200">

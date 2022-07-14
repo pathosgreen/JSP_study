@@ -27,9 +27,9 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	// c Read u d
 	public List<MemberVO> listMembers() {
-		List<MemberVO> membersList = new ArrayList();
+		List<MemberVO> membersList = new ArrayList<>();
 		try {
 			conn = dataFactory.getConnection();
 			String query = "select * from t_member order by joinDate desc";
@@ -53,6 +53,7 @@ public class MemberDAO {
 		}
 		return membersList;
 	}
+	// Create r u d
 	public void addMember(MemberVO memberVO) {
 		try {
 			conn = dataFactory.getConnection();
@@ -74,6 +75,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+	// c Read u d
 	public MemberVO findMember(String _id) {
 		MemberVO memInfo = null;
 		try {
@@ -97,7 +99,7 @@ public class MemberDAO {
 		}
 		return memInfo;
 	}
-	
+	// c r Update d 
 	public void modMember(MemberVO memberVO) {
 		String id = memberVO.getId();
 		String pwd = memberVO.getPwd();
@@ -119,7 +121,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	// c r u Delete
 	public void delMember(String id) {
 		try {
 			conn = dataFactory.getConnection();
