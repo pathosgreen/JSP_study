@@ -182,5 +182,49 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void deleteArticle(int articleNO) {
+		try {
+			conn = dataFactory.getConnection();
+			String query = "delete from t_board ";
+			query += " where articleno in (";
+			query += " select articleno from t_board ";
+			query += " start with articleno = ?";
+			query += " connect by prior articleno = parentno )";
+			System.out.println(query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, articleNO);
+			pstmt.executeUpdate();
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<Integer> selectRemoveArticles(int articleNO) {
+		List<Integer> articleNOList = new ArrayList<Integer>();
+		try {
+			conn = dataFactory.getConnection();
+			String query = "select articleno from t_board ";
+			query += " start with articleno = ?";
+			query += " connect by prior articleno = parentno";
+			System.out.println(query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, articleNO);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				articleNO = rs.getInt("articleNO");
+				articleNOList.add(articleNO);
+			}
+			pstmt.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return articleNOList;
+	}
+
+	
 
 }
