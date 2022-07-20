@@ -254,7 +254,7 @@ public class ManagerDAO {
 
 			sql = "INSERT INTO book(book_id,book_kind,book_title,book_price,";
 			sql += "book_count,author,publishing_com,publishing_date,book_image,";
-			sql += "book_content,discount_rate,reg_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,now())";
+			sql += "book_content,discount_rate,reg_date) VALUES (?,?,?,?,?,?,?,?,?,?,?,SYSDATE)";
 
 			pstmt = conn.prepareStatement(sql);
 
@@ -395,13 +395,13 @@ public class ManagerDAO {
         	 
              conn = getConnection();
              
-             String sql = "SELECT * FROM book WHERE book_kind=? ";
-             sql += "ORDER  BY reg_date DESC LIMIT ?,?";
+             String sql = "SELECT * FROM book WHERE book_kind=? AND ROWNUM < 4 ";
+             sql += "ORDER BY reg_date DESC";
              
              pstmt = conn.prepareStatement(sql);
              pstmt.setString(1, book_kind);
-             pstmt.setInt(2, 0);
-             pstmt.setInt(3, count);
+//             pstmt.setInt(2, 0);
+//             pstmt.setInt(3, count);
              
          	rs = pstmt.executeQuery();
 

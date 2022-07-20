@@ -4,7 +4,7 @@ CREATE TABLE MANAGER(
     MANAGERPW VARCHAR(16)
 );
 INSERT INTO MANAGER (MANAGERID, MANAGERPW)
-VALUES('ADMIN@SHOP.COM', '1111');
+VALUES('admin@shop.com', '111111');
 SELECT * FROM MANAGER;
 -------------------------------------------------------
 -- BOOK 테이블 생성하기

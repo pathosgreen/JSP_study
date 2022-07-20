@@ -37,6 +37,10 @@
 			  });
 		});
 		
+		$("#uAdmin").click(function(){//[Admin]버튼 클릭
+			window.location.href="${contextPath}/mg/managerLogin.do";
+		});
+		
 		$("#uUpdate").click(function(){//[회원 정보 변경]버튼 클릭
 			window.location.href="${contextPath}/modify.do";
 		});
@@ -58,7 +62,6 @@
 		$("#buy").click(function(){//[구매내역]버튼 클릭
 			window.location.href("${contextPath}/buyList.do");
 		});
-	
 	});
 </script>
 
@@ -67,12 +70,14 @@
      <ul>
         <li><label for="cid">아이디</label>
             <input id="cid" name="cid" type="email" size="20" 
-              maxlength="50" placeholder="example@kings.com">
+              maxlength="50" placeholder="test@email.com">
             <label for="cpasswd">비밀번호</label>
             <input id="cpasswd" name="cpasswd" type="password" 
               size="20" placeholder="6~16자 숫자/문자" maxlength="16">
             <button id="uLogin">로그인</button>
             <button id="uRes">회원가입</button>
+            <button id="uAdmin">관리자로그인</button>
+        </li>
      </ul>
   </div>
 </c:if>
@@ -91,10 +96,9 @@
                  <td><form id="buyForm" method="post" action="${contextPath}/buyList.do">
                    <input type="hidden" name="buyer" value="${sessionScope.id}">
                    <input type="submit" name="buy" value="구매내역"></form></td>
-                 </tr>
+               </tr>
              </table>
         </div>     
-            
      </ul>
   </div>
 </c:if> 

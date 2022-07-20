@@ -13,6 +13,6 @@
 <div id="cartUpdatePro">
   <form id="cartUpdatePro" method="post" action="${contextPath}/cartList.do">
      <input type="hidden" name="buyer" value="${sessionScope.id}">
-	 <input type="submit" value="장바구니로 되돌아가기" >  
+	 <input type="submit" value="장바구니로 되돌아가기" >
   </form>
 </div> 

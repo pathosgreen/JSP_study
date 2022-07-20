@@ -18,10 +18,10 @@
   </div>
   <div id="auth" class="box">
   <!-- top부분에는 type==0;일경우  02_managerLogin.jsp / type==1일경우 12_login.jsp 페이지 불러오기-->
-    <c:if test="${type == 0}"> <!-- _01_ManagerMain.jave의 type값 불러오기 -->
+    <c:if test="${type == 0}"> <!-- _01_ManagerMain.java의 type값 불러오기 -->
       <jsp:include page="02_managerLogin.jsp"/>
     </c:if>
-    <c:if test="${type == 1}"> <!-- _11_ShopMain.jave의 type값 불러오기 -->
+    <c:if test="${type == 1}"> <!-- _11_ShopMain.java의 type값 불러오기 -->
      <jsp:include page="12_login.jsp"/>
     </c:if>
   </div>
