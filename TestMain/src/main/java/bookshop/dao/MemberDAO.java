@@ -113,8 +113,7 @@ public class MemberDAO {
 		
 		MemberDTO member = null;
 
-		try {
-			
+		try {			
 			conn = getConnection();
 
 			pstmt = conn.prepareStatement("select * from member where id = ?");
@@ -139,14 +138,12 @@ public class MemberDAO {
 		return member;
 	}
 
-	
 	// 주어진 id, passwd에 해당하는 회원정보를 얻어내는 메소드
 	public MemberDTO getMember(String id, String passwd) {
 		
 		MemberDTO member = null;
 
 		try {
-			
 			conn = getConnection();
 
 			pstmt = conn.prepareStatement("select * from member where id = ? and passwd = ?"); // 사용자가 입력한 비밀번호와 테이블의 비밀번호가 같으면 수행

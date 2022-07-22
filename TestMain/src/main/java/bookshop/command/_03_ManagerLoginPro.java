@@ -12,7 +12,7 @@ public class _03_ManagerLoginPro implements CommandAction{
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		
 		request.setCharacterEncoding("utf-8");
-           
+
         String id = request.getParameter("id");
 	    String passwd  = request.getParameter("passwd");
 

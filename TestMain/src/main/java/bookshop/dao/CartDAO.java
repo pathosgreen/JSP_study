@@ -200,7 +200,7 @@ public class CartDAO {
 
              pstmt = conn.prepareStatement("delete from cart where buyer=?");
              pstmt.setString(1, id);
-             
+
              pstmt.executeUpdate();
          } catch (Exception ex) {
              ex.printStackTrace();
